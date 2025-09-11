@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume Analyzer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .upload-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 480px;
+            text-align: center;
+            animation: slideUp 0.8s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .heading {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .heading::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .subtitle {
+            color: #718096;
+            font-size: 1.1em;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #4a5568;
+            font-weight: 600;
+            font-size: 1em;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #f8fafc;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background: white;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-input {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .file-input-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 150%);
+            color: white;
+            border: 0px dashed transparent;
+            border-radius: 12px;    
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .file-input-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.3);
+        }
+
+        .file-input-button i {
+            font-size: 1.2em;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 16px 32px;
+            cursor: pointer;
+            border-radius: 12px;
+            width: 100%;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .submit-button:hover::before {
+            left: 100%;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-button:active {
+            transform: translateY(0);
+        }
+
+        .icon-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .icon-container i {
+            color: white;
+            font-size: 2em;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .feature {
+            text-align: center;
+            color: #718096;
+            font-size: 0.9em;
+        }
+
+        .feature i {
+            display: block;
+            font-size: 1.5em;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 600px) {
+            .upload-container {
+                padding: 30px;
+                margin: 20px;
+            }
+            
+            .heading {
+                font-size: 2em;
+            }
+            
+            .features {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="upload-container">
+        <div class="icon-container">
+            <i class="fas fa-file-alt"></i>
+        </div>
+        
+        <h2 class="heading">Resume Analyzer</h2>
+        <p class="subtitle">Upload your resume and get instant AI-powered insights to boost your career prospects</p>
+        
+        <!-- FIXED: Single form with correct action URL -->
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_job_description">
+                    <i class="fas fa-briefcase"></i> Job Description (Optional)
+                </label>
+                <textarea 
+                    name="job_description" 
+                    class="form-control" 
+                    id="id_job_description" 
+                    rows="4" 
+                    placeholder="Paste the job description here for better analysis..."
+                ></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="id_resume_file">
+                    <i class="fas fa-upload"></i> Upload Resume
+                </label>
+                <div class="file-input-wrapper">
+                    <input type="file" name="resume_file" class="file-input" id="id_resume_file" accept=".pdf,.doc,.docx" required>
+                    <div class="file-input-button">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <span>Choose Resume File</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Submit button is now inside the same form -->
+            <button type="submit" class="submit-button">
+                <i class="fas fa-search"></i> Analyze Resume
+            </button>
+        </form>
+        
+        <div class="features">
+            <div class="feature">
+                <i class="fas fa-zap"></i>
+                <span>Instant Analysis</span>
+            </div>
+            <div class="feature">
+                <i class="fas fa-shield-alt"></i>
+                <span>Secure & Private</span>
+            </div>
+            <div class="feature">
+                <i class="fas fa-chart-line"></i>
+                <span>Detailed Insights</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add file name display functionality
+        document.getElementById('id_resume_file').addEventListener('change', function(e) {
+            const fileName = e.target.files[0]?.name;
+            const button = document.querySelector('.file-input-button span');
+            if (fileName) {
+                button.textContent = `Selected: ${fileName}`;
+                document.querySelector('.file-input-button').style.background = 'linear-gradient(135deg, #48bb78 0%, #38a169 100%)';
+            }
+        });
+
+        // Add form validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const fileInput = document.getElementById('id_resume_file');
+            if (!fileInput.files.length) {
+                e.preventDefault();
+                alert('Please select a resume file to upload.');
+                return false;
+            }
+        });
+    </script>
+</body>
+</html>

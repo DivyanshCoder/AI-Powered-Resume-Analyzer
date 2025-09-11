@@ -1,0 +1,66 @@
+DIVYANSH PATNI SOFTWARE DEVELOPER
+divyanshpatni@gmail.com +91-9993400744 linkedin.com/in/divyanshpatni Pune
+PROFILE
+A detail-oriented developer with 1.6+ years of experience specializing in automation use cases and backend
+development. Proficient in Python, SQL, and PowerShell, with a strong focus on building efficient systems, streamlining
+processes, and driving impactful software solutions.
+WORK EXPERIENCE
+Software Developer, Tata Consultancy Services (TCS) 12/2023 – Present | Pune
+Implemented end-to-end automation use cases using Python, SQL, and PowerShell, resulting in a 40% reduction in
+•
+manual efforts and human intervention.
+Developed a Django-based web application with an integrated chatbot for a Tata Motors project, enabling seamless
+•
+user interaction and streamlining operations for a large user base.
+Automated ServiceNow ticket handling by integrating Python with REST APIs, enabling faster resolution, reducing
+•
+response time by 35%, and improving overall service efficiency.
+Collaborated with cross-functional teams to gather requirements and delivered client demos, promoting strong
+•
+teamwork, transparency, and successful stakeholder engagement.
+Skills :- Python, SQL, PowerShell, REST APIs, Django, HTML, CSS, Agile Methodology
+•
+Software Developer Intern, Gigatorb Software Pvt. Ltd. 09/2023 – 11/2023 | Indore
+Gained hands-on experience in backend development using Java, Spring Boot, and REST APIs, contributing to a
+•
+functional web application.
+Worked with tools like Git for version control and Postman for API testing and validation.
+•
+Contributed to the development, debugging, and deployment of features, creating efficient and scalable solutions
+•
+while enhancing team collaboration and problem-solving abilities.
+Built CRUD functionality for backend services using Spring Boot and integrated MySQL for data persistence.
+•
+Skills :- Java, Spring Boot, SQL, RESTful APIs, HTML, CSS, Git, Postman
+•
+SKILLS
+Programming Languages Framework Web Technologies Tools & Technologies
+Python, Java, SQL, Django, Bootstrap HTML, CSS MySQL, RESTful APIs, Git,
+Powershell Postman
+Soft Skills Python Libraries
+Methodologies Problem-solving, Pandas, NumPy, Requests,
+Agile, Process Automation Collaboration, JSON, OS, Subprocess,
+Communication CSV, BeautifulSoup
+Projects
+News Media Application | Python, Django, MySQL, RESTful APIs, ORM, HTML, CSS
+Built a dynamic news web app that displays live news summaries under 60 words.
+•
+Integrated external news APIs and used Django ORM for structured content management.Implemented features
+•
+allowing users to like and comment on news, enhancing interactivity and user engagement.
+Users can explore news by categories such as Cricket, Politics, and Technology, enabling a more personalized and
+•
+engaging experience.
+Portfolio Builder Web App | Python, Django, MySQL, HTML, CSS, JavaScript, Bootstrap
+Designed as a no-code platform to help users create professional portfolios without technical skills.
+•
+Enabled users to select templates and generate custom portfolios by filling in personal details.
+•
+Reduced manual efforts up to 70% in creating professional portfolio websites.
+•
+Implemented user authentication and authorization for secure and personalized access.
+•
+EDUCATION
+Bachelor of Technology (B.Tech) in Computer Science and 2019 – 2023 | Indore
+Engineering, RGPV University, Indore
+CGPA: 8.2

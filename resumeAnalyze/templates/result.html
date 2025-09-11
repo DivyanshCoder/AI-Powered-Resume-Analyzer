@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Analysis Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+        }
+        
+        .container {
+            padding: 2rem 0;
+        }
+        
+        .main-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        
+        .header-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .analysis-section {
+            padding: 2rem;
+        }
+        
+        .info-card {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .icon-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .icon-header i {
+            font-size: 1.5rem;
+            margin-right: 0.75rem;
+            color: #667eea;
+        }
+        
+        /* Enhanced Analysis Styling */
+        .analysis-content {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            font-size: 15px;
+        }
+        
+        .analysis-content h1, .analysis-content h2, .analysis-content h3 {
+            color: #667eea;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .analysis-content h1 {
+            font-size: 1.5rem;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+        
+        .analysis-content h2 {
+            font-size: 1.3rem;
+        }
+        
+        .analysis-content h3 {
+            font-size: 1.1rem;
+        }
+        
+        /* Score highlighting */
+        .score-highlight {
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            padding: 1.5rem 2.5rem;           
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: 900;                 
+            font-size: 2.2rem;                
+            margin: 2rem 0;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);  
+            text-transform: uppercase;        
+            letter-spacing: 1px;              
+            border: 3px solid white;         
+        }
+        
+        /* Section styling */
+        .analysis-section-item {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .section-title {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+        
+        /* Strength and weakness styling */
+        .strength-point {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 0.75rem 1rem;
+            margin: 0.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .weakness-point {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 0.75rem 1rem;
+            margin: 0.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .recommendation-point {
+            background: #cce5ff;
+            border-left: 4px solid #007bff;
+            padding: 0.75rem 1rem;
+            margin: 0.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .action-buttons {
+            padding: 2rem;
+            text-align: center;
+            background: #f8f9fa;
+        }
+        
+        .btn-custom {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border: none;
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            margin: 0.5rem;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-card">
+            <!-- Header Section -->
+            <div class="header-section">
+                <h1><i class="fas fa-chart-line"></i> Resume Analysis Report</h1>
+                <p class="mb-0">Comprehensive AI-Powered Assessment</p>
+            </div>
+            
+            <!-- Analysis Content -->
+            <div class="analysis-section">
+                <div class="info-card">
+                    <div class="icon-header">
+                        <i class="fas fa-robot"></i>
+                        <h4 class="mb-0">AI Analysis</h4>
+                    </div>
+                    <div class="analysis-content" id="analysisContent">
+                        {{ analysis|linebreaks }}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <a href="{% url 'upload_resume' %}" class="btn btn-custom">
+                    <i class="fas fa-upload"></i> Analyze Another Resume
+                </a>
+                <button onclick="window.print()" class="btn btn-custom">
+                    <i class="fas fa-print"></i> Print Report
+                </button>
+                <button onclick="downloadReport()" class="btn btn-custom">
+                    <i class="fas fa-download"></i> Download PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Enhanced formatting for the analysis content
+        document.addEventListener('DOMContentLoaded', function() {
+            const analysisContent = document.getElementById('analysisContent');
+            let html = analysisContent.innerHTML;
+            
+            // Format numbered sections (1., 2., 3., 4.)
+            html = html.replace(/(\d+\.\s*\*\*[^*]+\*\*)/g, '<div class="section-title">$1</div>');
+            
+            // Highlight match score
+            html = html.replace(/(\*\*Match Score:\*\*\s*\d+%)/g, '<div class="score-highlight">$1</div>');
+            
+            // Format bold sections as section titles
+            html = html.replace(/\*\*([^*]+)\*\*/g, '<strong style="color: #667eea;">$1</strong>');
+            
+            // Format bullet points with different styles based on context
+            const lines = html.split('<br>');
+            let inStrengthsSection = false;
+            let inMissingSection = false;
+            let inRecommendationsSection = false;
+            
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i].trim();
+                
+                // Check which section we're in
+                if (line.includes('Key Strengths')) {
+                    inStrengthsSection = true;
+                    inMissingSection = false;
+                    inRecommendationsSection = false;
+                } else if (line.includes('Missing Skills')) {
+                    inStrengthsSection = false;
+                    inMissingSection = true;
+                    inRecommendationsSection = false;
+                } else if (line.includes('Recommendations')) {
+                    inStrengthsSection = false;
+                    inMissingSection = false;
+                    inRecommendationsSection = true;
+                }
+                
+                // Format content based on section
+                if (line.startsWith('*') && line.includes(':')) {
+                    if (inStrengthsSection) {
+                        lines[i] = `<div class="strength-point"><i class="fas fa-check-circle text-success me-2"></i>${line.substring(1).trim()}</div>`;
+                    } else if (inMissingSection) {
+                        lines[i] = `<div class="weakness-point"><i class="fas fa-exclamation-triangle text-warning me-2"></i>${line.substring(1).trim()}</div>`;
+                    } else if (inRecommendationsSection) {
+                        lines[i] = `<div class="recommendation-point"><i class="fas fa-lightbulb text-info me-2"></i>${line.substring(1).trim()}</div>`;
+                    }
+                }
+            }
+            
+            analysisContent.innerHTML = lines.join('<br>');
+        });
+
+        function downloadReport() {
+            const reportContent = document.querySelector('.main-card').innerHTML;
+            const blob = new Blob([`
+                <!DOCTYPE html>
+                <html><head>
+                    <title>Resume Analysis Report</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; padding: 20px; }
+                        .score-highlight { background: #667eea; color: white; padding: 10px; border-radius: 5px; display: inline-block; }
+                        .strength-point { background: #d4edda; border-left: 4px solid #28a745; padding: 10px; margin: 5px 0; }
+                        .weakness-point { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px; margin: 5px 0; }
+                        .recommendation-point { background: #cce5ff; border-left: 4px solid #007bff; padding: 10px; margin: 5px 0; }
+                    </style>
+                </head>
+                <body>${reportContent}</body></html>
+            `], {type: 'text/html'});
+            
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'resume-analysis-report.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
