@@ -1,10 +1,7 @@
 # 🎯 Resume Analyzer - AI-Powered Talent Matching System
 
 ## 📋 Overview
-**An intelligent resume analysis system designed to:**
-   ◆ Provide deep insights into resumes
-   ◆ Match candidate skills with job requirements  
-   ◆ Offer personalized recommendations for both job seekers and recruiters
+**A smart resume analysis platform powered by AI that delivers comprehensive insights, accurate skill-to-job matching, and personalized recommendations. It assists job seekers in refining their resumes with data-driven suggestions while enabling recruiters to streamline candidate evaluation through automated analysis and detailed reporting.**
 
 ---
 
