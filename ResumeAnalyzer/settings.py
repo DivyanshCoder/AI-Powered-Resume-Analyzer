@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -78,41 +79,30 @@ WSGI_APPLICATION = 'ResumeAnalyzer.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 try:
-    from dotenv import load_dotenv
     load_dotenv()
-    print("✅ .env file loaded successfully")
 except ImportError:
-    print("⚠️  python-dotenv not installed. Run: pip install python-dotenv")
+    pass
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Now your DATABASE_URL will be available
-database_url = os.environ.get('DATABASE_URL', 'NOT SET')
-
-if database_url:
-    try:
-        parsed_url = dj_database_url.parse(database_url)
-        print(f"✅ DATABASE_URL is set and parsed successfully: {parsed_url['ENGINE']}")
-    
-        db_config = dj_database_url.config(default=database_url)
-        print(db_config)
-
-        if not db_config or not db_config.get('ENGINE'):
-            print("❌ dj_database_url.config() returned empty/invalid config")
-        else:
-            print("✅ dj_database_url.config() returned valid config")
-
-    except:
-        print('Error with dj_database_url: {e}')
-# Default: use SQLite locally
-default_db_url = f"sqlite:///{BASE_DIR}/db.sqlite3"
-
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get("DATABASE_URL", default_db_url),
-        conn_max_age=600,
-    )
+    'default': {
+        'ENGINE': os.environ.get('DB_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': os.environ.get('DB_NAME', BASE_DIR / 'db.sqlite3'),
+        'USER': os.environ.get('DB_USER', ''),
+        'PASSWORD': os.environ.get('DB_PASSWORD', ''),
+        'HOST': os.environ.get('DB_HOST', ''),
+        'PORT': os.environ.get('DB_PORT', ''),
+        'CONN_MAX_AGE': 600,
+    }
 }
+
+if os.environ.get('DB_HOST'):
+    print("🗄️ Using PostgreSQL (Supabase)")
+    print(f"Host: {os.environ.get('DB_HOST')}")
+    print(f"User: {os.environ.get('DB_USER')}")
+else:
+    print("🗄️ Using SQLite (Local)")
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
