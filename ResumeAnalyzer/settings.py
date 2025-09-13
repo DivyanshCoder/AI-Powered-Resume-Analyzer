@@ -22,7 +22,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-gmc-(_u#bvh83%d53q*eg87t360c15q-!l&lui8fwpa6v8j3@+'
 GOOGLE_API_KEY = "AIzaSyB4omF4OFn5VfLeYnXIWFXEn_h-_GBzSPM"
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -78,8 +77,33 @@ WSGI_APPLICATION = 'ResumeAnalyzer.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+    print("✅ .env file loaded successfully")
+except ImportError:
+    print("⚠️  python-dotenv not installed. Run: pip install python-dotenv")
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Now your DATABASE_URL will be available
+database_url = os.environ.get('DATABASE_URL', 'NOT SET')
+
+if database_url:
+    try:
+        parsed_url = dj_database_url.parse(database_url)
+        print(f"✅ DATABASE_URL is set and parsed successfully: {parsed_url['ENGINE']}")
+    
+        db_config = dj_database_url.config(default=database_url)
+        print(db_config)
+
+        if not db_config or not db_config.get('ENGINE'):
+            print("❌ dj_database_url.config() returned empty/invalid config")
+        else:
+            print("✅ dj_database_url.config() returned valid config")
+
+    except:
+        print('Error with dj_database_url: {e}')
 # Default: use SQLite locally
 default_db_url = f"sqlite:///{BASE_DIR}/db.sqlite3"
 
@@ -87,7 +111,6 @@ DATABASES = {
     'default': dj_database_url.config(
         default=os.environ.get("DATABASE_URL", default_db_url),
         conn_max_age=600,
-        # ssl_require=True  
     )
 }
 
@@ -135,21 +158,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
         
-print("=== SYSTEM ENVIRONMENT VARIABLES ===")
-# These should exist on most systems
-common_vars = ['PATH', 'HOME', 'USER', 'USERNAME', 'PYTHONPATH']
-for var in common_vars:
-    value = os.environ.get(var)
-    if value:
-        print(f"{var}: {value[:50]}...")  # Truncate long paths
-    else:
-        print(f"{var}: Not found")
-
-print(f"\nTotal environment variables: {len(os.environ)}")
-
-# Check specifically for your app variables
-app_vars = ['DATABASE_URL', 'SECRET_KEY', 'RENDER']
-print("\n=== APP ENVIRONMENT VARIABLES ===")
-for var in app_vars:
-    value = os.environ.get(var)
-    print(f"{var}: {value if value else 'NOT SET'}")
