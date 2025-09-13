@@ -87,7 +87,7 @@ DATABASES = {
     'default': dj_database_url.config(
         default=os.environ.get("DATABASE_URL", default_db_url),
         conn_max_age=600,
-        ssl_require=False  
+        # ssl_require=True  
     )
 }
 
@@ -135,3 +135,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
         
+print("=== SYSTEM ENVIRONMENT VARIABLES ===")
+# These should exist on most systems
+common_vars = ['PATH', 'HOME', 'USER', 'USERNAME', 'PYTHONPATH']
+for var in common_vars:
+    value = os.environ.get(var)
+    if value:
+        print(f"{var}: {value[:50]}...")  # Truncate long paths
+    else:
+        print(f"{var}: Not found")
+
+print(f"\nTotal environment variables: {len(os.environ)}")
+
+# Check specifically for your app variables
+app_vars = ['DATABASE_URL', 'SECRET_KEY', 'RENDER']
+print("\n=== APP ENVIRONMENT VARIABLES ===")
+for var in app_vars:
+    value = os.environ.get(var)
+    print(f"{var}: {value if value else 'NOT SET'}")
