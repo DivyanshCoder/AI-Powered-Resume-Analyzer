@@ -32,16 +32,27 @@ ALLOWED_HOSTS = ['ai-powered-resume-analyzer-txql.onrender.com', '127.0.0.1', 'l
 
 load_dotenv()  # Load environment variables from .env file
 
-database_url = os.getenv('DIRECT_DATABASE_URL') or os.getenv('DATABASE_URL')
-SECRET_KEY = os.getenv('SECRET_KEY')
-DEBUG = os.getenv('DEBUG', 'True') == 'True'
-
+default_db_url = f"sqlite:///{BASE_DIR}/db.sqlite3"
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),
+        default=os.environ.get('DATABASE_URL', default_db_url),
         conn_max_age=600,
     )
 }
+
+
+database_url = os.environ.get('DATABASE_URL')
+print(f"DATABASE_URL set: {bool(database_url)}")
+print(f"DATABASE_URL: {database_url}")
+
+try:
+    parsed_config = dj_database_url.parse(database_url)
+    print(parsed_config)
+    print(f"Database engine: {parsed_config.get('ENGINE')}")
+    print(f"Parsed DB config keys: {list(parsed_config.keys())}")
+except Exception as e:
+    print(f"Error parsing DATABASE_URL: {e}")
+
 
 # Application definition
 
