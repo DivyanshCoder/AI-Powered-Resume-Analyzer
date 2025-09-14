@@ -50,7 +50,11 @@ An intelligent resume analysis system designed to:
 - **Git** → Version control  
 - **SQLite / PostgreSQL** → Database management  
 - **REST APIs** → Data communication  
-- **JSON** → Data interchange format  
+- **JSON** → Data interchange format
+
+### ☁️ Deployment & Infrastructure
+- **Supabase** → Managed database
+- **Render** → Cloud hosting and deployment
 
 ---
 
@@ -63,7 +67,7 @@ An intelligent resume analysis system designed to:
 ### 🎯 Matching & Intelligence
 - **Smart matching** → Match resumes against job descriptions  
 - **Detailed reporting** → Generate comprehensive reports with insights  
-- **Advanced filtering** → Intelligent search and filtering capabilities  
+- **Advanced filtering** → Intelligent search and filtering capabilities
 
 ### 👥 User Experience
 - **Bulk analysis** → Recruiter dashboard for processing multiple resumes  
@@ -71,3 +75,5 @@ An intelligent resume analysis system designed to:
 
 ---
 
+## 🚀 Live Deployment
+- **Check out the running application here :** https://ai-powered-resume-analyzer-txql.onrender.com/
