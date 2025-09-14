@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 GOOGLE_API_KEY = "AIzaSyB4omF4OFn5VfLeYnXIWFXEn_h-_GBzSPM"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['ai-powered-resume-analyzer-txql.onrender.com', '127.0.0.1', 'localhost']
 
@@ -40,6 +40,7 @@ DATABASES = {
     )
 }
 
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 database_url = os.environ.get('DATABASE_URL')
 print(f"DATABASE_URL set: {bool(database_url)}")
