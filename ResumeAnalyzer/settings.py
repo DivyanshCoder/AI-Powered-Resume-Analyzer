@@ -30,6 +30,18 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['ai-powered-resume-analyzer-txql.onrender.com', '127.0.0.1', 'localhost']
 
+load_dotenv()  # Load environment variables from .env file
+
+database_url = os.getenv('DIRECT_DATABASE_URL') or os.getenv('DATABASE_URL')
+SECRET_KEY = os.getenv('SECRET_KEY')
+DEBUG = os.getenv('DEBUG', 'True') == 'True'
+
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL'),
+        conn_max_age=600,
+    )
+}
 
 # Application definition
 
@@ -77,32 +89,6 @@ WSGI_APPLICATION = 'ResumeAnalyzer.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-try:
-    load_dotenv()
-except ImportError:
-    pass
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-DATABASES = {
-    'default': {
-        'ENGINE': os.environ.get('DB_ENGINE', 'django.db.backends.sqlite3'),
-        'NAME': os.environ.get('DB_NAME', BASE_DIR / 'db.sqlite3'),
-        'USER': os.environ.get('DB_USER', ''),
-        'PASSWORD': os.environ.get('DB_PASSWORD', ''),
-        'HOST': os.environ.get('DB_HOST', ''),
-        'PORT': os.environ.get('DB_PORT', ''),
-        'CONN_MAX_AGE': 600,
-    }
-}
-
-if os.environ.get('DB_HOST'):
-    print("🗄️ Using PostgreSQL (Supabase)")
-    print(f"Host: {os.environ.get('DB_HOST')}")
-    print(f"User: {os.environ.get('DB_USER')}")
-else:
-    print("🗄️ Using SQLite (Local)")
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
